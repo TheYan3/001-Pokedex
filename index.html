@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Pokedex</title>
+      <link rel="stylesheet" href="style.css" />
+      <link rel="stylesheet" href="./assets/Styles/root.css" />
+      <link rel="stylesheet" href="./assets/Styles/querry.css" />
+      <script src="./assets/scripts/db.js"></script>
+   </head>
+   <body>
+      <div id="main-wrapper">
+         <header class="page-header">
+            <h1>Pokedex</h1>
+            <label class="search-group" for="search-input">
+               <span class="sr-only">Pokemon suchen</span>
+               <input
+                  id="search-input"
+                  type="search"
+                  placeholder="Pokemon suchen..."
+                  autocomplete="off" />
+               <img
+                  src="./assets/img/icon-team.png"
+                  alt="pokemon search Icon" />
+            </label>
+         </header>
+         <main id="pokemon-container"></main>
+         <p id="status-message" class="status-message" hidden></p>
+         <div class="load-more-wrapper">
+            <button id="load-more" type="button">Weitere Pokemon laden</button>
+         </div>
+      </div>
+
+      <div id="pokemon-modal" class="modal-overlay" hidden>
+         <article
+            class="modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-name">
+            <div class="modal-hero" id="modal-hero">
+               <button
+                  type="button"
+                  class="modal-close"
+                  id="modal-close"
+                  aria-label="Schliessen">
+                  &times;
+               </button>
+               <div class="modal-hero-content">
+                  <div class="modal-hero-text">
+                     <span class="modal-hero-id" id="modal-id">#001</span>
+                     <h2 id="modal-name">Bulbasaur</h2>
+                     <div class="modal-types" id="modal-types"></div>
+                  </div>
+                  <img id="modal-image" src="" alt="" />
+               </div>
+            </div>
+            <nav class="modal-tabs" role="tablist">
+               <button
+                  class="modal-tab is-active"
+                  data-tab="about"
+                  role="tab"
+                  aria-controls="modal-panel-about">
+                  About
+               </button>
+               <button
+                  class="modal-tab"
+                  data-tab="stats"
+                  role="tab"
+                  aria-controls="modal-panel-stats">
+                  Base Stats
+               </button>
+               <button
+                  class="modal-tab"
+                  data-tab="gender"
+                  role="tab"
+                  aria-controls="modal-panel-gender">
+                  Gender
+               </button>
+               <button
+                  class="modal-tab"
+                  data-tab="shiny"
+                  role="tab"
+                  aria-controls="modal-panel-shiny">
+                  Shiny
+               </button>
+               <button
+                  class="modal-tab"
+                  data-tab="evolutions"
+                  role="tab"
+                  aria-controls="modal-panel-evolutions">
+                  Evolutionen
+               </button>
+            </nav>
+            <div class="modal-panels">
+               <section
+                  class="modal-panel is-active"
+                  id="modal-panel-about"
+                  role="tabpanel"
+                  data-tab-panel="about">
+                  <div class="about-list" id="modal-about"></div>
+               </section>
+               <section
+                  class="modal-panel"
+                  id="modal-panel-stats"
+                  role="tabpanel"
+                  data-tab-panel="stats">
+                  <div class="stats-list" id="modal-stats"></div>
+               </section>
+               <section
+                  class="modal-panel"
+                  id="modal-panel-gender"
+                  role="tabpanel"
+                  data-tab-panel="gender">
+                  <div class="gender-info">
+                     <div class="gender-ratio" id="modal-gender"></div>
+                     <p
+                        class="gender-description"
+                        id="modal-gender-description"></p>
+                  </div>
+               </section>
+               <section
+                  class="modal-panel"
+                  id="modal-panel-shiny"
+                  role="tabpanel"
+                  data-tab-panel="shiny">
+                  <div class="shiny-viewer" id="modal-shiny"></div>
+               </section>
+               <section
+                  class="modal-panel"
+                  id="modal-panel-evolutions"
+                  role="tabpanel"
+                  data-tab-panel="evolutions">
+                  <div class="evolution-list" id="modal-evolutions"></div>
+               </section>
+            </div>
+            <div class="modal-nav">
+               <button
+                  type="button"
+                  id="modal-prev"
+                  aria-label="Vorheriges Pokemon">
+                  <img
+                     class="arrowBack"
+                     src="./assets/img/pfeil-pokemon.png"
+                     alt="pfeilrechts" />
+               </button>
+               <button
+                  type="button"
+                  id="modal-next"
+                  aria-label="Naechstes Pokemon">
+                  <img
+                     class="arrowNext"
+                     src="./assets/img/pfeil-pokemon.png"
+                     alt="pfeilrechts" />
+               </button>
+            </div>
+         </article>
+      </div>
+
+      <script src="script.js" defer></script>
+   </body>
+</html>
