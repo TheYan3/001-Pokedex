@@ -4,3 +4,60 @@
    --modal-radius: 26px;
    --primary-text: #1a1a1a;
 }
+
+/* ========== Typenfarben ========== */
+:root {
+   --bug-bg: linear-gradient(135deg, #56ab2f, #a8e063);
+   --bug-text: #ffffff;
+
+   --dark-bg: linear-gradient(135deg, #2c3e50, #4b79a1);
+   --dark-text: #ffffff;
+
+   --dragon-bg: linear-gradient(135deg, #6441a5, #2a0845);
+   --dragon-text: #ffffff;
+
+   --electric-bg: linear-gradient(135deg, #f8b500, #fceabb);
+   --electric-text: #3a2f00;
+
+   --fairy-bg: linear-gradient(135deg, #ff9a9e, #fad0c4);
+   --fairy-text: #4a1f3d;
+
+   --fighting-bg: linear-gradient(135deg, #ec6f66, #f3a183);
+   --fighting-text: #ffffff;
+
+   --fire-bg: linear-gradient(135deg, #ff6a3d, #ff9a36);
+   --fire-text: #ffffff;
+
+   --flying-bg: linear-gradient(135deg, #74ebd5, #acb6e5);
+   --flying-text: #0f172a;
+
+   --ghost-bg: linear-gradient(135deg, #373b44, #4286f4);
+   --ghost-text: #ffffff;
+
+   --grass-bg: linear-gradient(135deg, #3ca55c, #7ed957);
+   --grass-text: #ffffff;
+
+   --ground-bg: linear-gradient(135deg, #d1913c, #ffd194);
+   --ground-text: #3a1f00;
+
+   --ice-bg: linear-gradient(135deg, #74ebd5, #9face6);
+   --ice-text: #0b203a;
+
+   --normal-bg: linear-gradient(135deg, #bdc3c7, #2c3e50);
+   --normal-text: #ffffff;
+
+   --poison-bg: linear-gradient(135deg, #7f00ff, #e100ff);
+   --poison-text: #ffffff;
+
+   --psychic-bg: linear-gradient(135deg, #ff758c, #ff7eb3);
+   --psychic-text: #ffffff;
+
+   --rock-bg: linear-gradient(135deg, #636363, #a2ab58);
+   --rock-text: #ffffff;
+
+   --steel-bg: linear-gradient(135deg, #757f9a, #d7dde8);
+   --steel-text: #111827;
+
+   --water-bg: linear-gradient(135deg, #3a7bd5, #4facfe);
+   --water-text: #ffffff;
+}
