@@ -5,7 +5,7 @@ async function fetchData() {
   // Ladeanzeige anzeigen
   const statusMessage = document.getElementById("status-message");
   statusMessage.hidden = false;
-  statusMessage.textContent = "Lade Pokémon...";
+  statusMessage.textContent = isLoadingTemplate();
 
   try {
     const response = await fetch(`${BASE_URL}?limit=${pageSize}&offset=${offset}`);
