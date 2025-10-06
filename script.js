@@ -1,9 +1,6 @@
 async function fetchData() {
-  if (isLoading) return; // Verhindert gleichzeitige Ladevorgänge
+  if (isLoading) return;
   isLoading = true;
-
-  // Ladeanzeige anzeigen
-  const statusMessage = document.getElementById("status-message");
   statusMessage.hidden = false;
   statusMessage.textContent = isLoadingTemplate();
 
@@ -58,5 +55,19 @@ function loadMore() {
   fetchData();
 }
 
+function openInfo() {
+  // Klick auf eine Karte öffnet den Modal-Overlay
+  openPokemonModal();
+}
+
+function openPokemonModal() {
+  const modal = document.getElementById('pokemon-modal');
+  if (!modal) return;
+  modal.hidden = false; // Overlay anzeigen
+  document.body.classList.add('modal-open'); // Scroll sperren
+}
+
+// Optional global verfügbar
+window.openPokemonModal = openPokemonModal;
 // Daten beim Laden der Seite abrufen
 document.addEventListener("DOMContentLoaded", fetchData);

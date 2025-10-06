@@ -10,3 +10,4 @@ let renderedCount = 0;
 let isLoading = false;
 
 const pokemonContainer = document.getElementById("pokemon-container");
+const statusMessage = document.getElementById("status-message");
