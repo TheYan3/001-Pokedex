@@ -1,3 +1,19 @@
+@media (max-width: 1200px) {
+   .pokemon-card .pokemon-img {
+      width: 185px;
+      height: 185px;
+      top: -95px;
+   }
+}
+
+@media (max-width: 900px) {
+   .pokemon-card .pokemon-img {
+      width: 200px;
+      height: 200px;
+      top: -100px;
+   }
+}
+
 @media (max-width: 600px) {
    #main-wrapper {
       padding: 16px 12px 72px;
@@ -8,9 +24,10 @@
       padding: 18px;
    }
 
-   .pokemon-card img {
-      width: 120px;
-      height: 120px;
+   .pokemon-card .pokemon-img {
+      width: 220px;
+      height: 220px;
+      top: -110px;
    }
 
    .modal-overlay {

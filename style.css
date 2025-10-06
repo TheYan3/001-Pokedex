@@ -115,6 +115,18 @@ body.modal-open {
    box-shadow: var(--card-shadow);
    transition: transform 0.15s ease, box-shadow 0.15s ease;
    margin-top: 100px;
+   overflow: visible;
+}
+
+.pokemon-img {
+   width: 170px;
+   height: 170px;
+   object-fit: contain;
+   align-self: flex-end;
+   filter: drop-shadow(0 12px 14px rgb(0, 0, 0));
+   position: absolute;
+   top: -90px;
+   z-index: 2;
 }
 
 .pokemon-card:hover {
@@ -126,16 +138,28 @@ body.modal-open {
    outline: 3px solid rgba(255, 255, 255, 0.5);
 }
 
+.type-bg {
+   position: absolute;
+   inset: 0;
+   overflow: hidden; /* nur das Icon wird beschnitten */
+   border-radius: inherit; /* gleiche Rundung wie Karte */
+}
+
+.img-type {
+   position: absolute;
+   bottom: -20px;
+   right: 110px;
+   width: 185px;
+   opacity: 0.4;
+}
+
 .pokemon-info {
    display: flex;
    justify-content: flex-end;
-   align-items: center;
-   flex-direction: row;
-   z-index: 1;
 }
 .pokemon-info h2 {
    margin: 0 0 12px;
-   font-size: 1.6rem;
+   font-size: 32px;
    letter-spacing: 0.5px;
    position: absolute;
    bottom: 10px;
@@ -145,15 +169,7 @@ body.modal-open {
 .pokemon-id {
    font-weight: 600;
    opacity: 0.85;
-}
-
-.img-type {
-   opacity: 0.4;
-   margin-top: 70px;
-   left: 29px;
-   bottom: 20px;
-   width: 100px !important;
-   height: 100px !important;
+   font-size: 24px;
 }
 
 .pokemon-overflow {
@@ -174,16 +190,6 @@ body.modal-open {
    font-size: 0.9rem;
    font-weight: 600;
    width: fit-content;
-}
-
-.pokemon-card img {
-   width: 200px;
-   height: 200px;
-   object-fit: contain;
-   align-self: flex-end;
-   filter: drop-shadow(0 12px 14px rgb(0, 0, 0));
-   position: absolute;
-   top: -90px;
 }
 
 .status-message {
