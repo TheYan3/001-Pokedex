@@ -1,6 +1,6 @@
 :root {
    --card-radius: 22px;
-   --card-shadow: 0 18px 35px rgba(0, 0, 0, 0.2);
+   --card-shadow: 0 18px 35px rgba(0, 0, 0, 0.282);
    --modal-radius: 26px;
    --primary-text: #1a1a1a;
 }

@@ -19,19 +19,16 @@
       padding: 16px 12px 72px;
    }
 
-   .pokemon-card {
-      min-height: 220px;
-      padding: 18px;
-   }
-
    .pokemon-card .pokemon-img {
-      width: 220px;
-      height: 220px;
+      width: 200px;
+      height: 200px;
       top: -110px;
+      transform-origin: center left;
    }
 
-   .modal-overlay {
-      padding: 0;
+   .pokemon-card:hover .pokemon-img,
+   .pokemon-card:focus-within .pokemon-img {
+      transform: scale(1.58);
    }
 
    .modal-card {
