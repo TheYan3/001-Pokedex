@@ -14,21 +14,35 @@
    }
 }
 
+@media (max-width: 768px) {
+   .pokemon-card,
+   .pokemon-img {
+      transition: none !important;
+   }
+
+   #pokemon-container:has(article:hover) article:not(:hover) {
+      filter: none !important;
+   }
+
+   .pokemon-card:hover .pokemon-img,
+   .pokemon-card:focus-within .pokemon-img {
+      transform: none !important;
+   }
+}
+
 @media (max-width: 600px) {
    #main-wrapper {
       padding: 16px 12px 72px;
+   }
+
+   #pokemon-container {
+      all: unset;
    }
 
    .pokemon-card .pokemon-img {
       width: 200px;
       height: 200px;
       top: -110px;
-      transform-origin: center left;
-   }
-
-   .pokemon-card:hover .pokemon-img,
-   .pokemon-card:focus-within .pokemon-img {
-      transform: scale(1.58);
    }
 
    .modal-card {
