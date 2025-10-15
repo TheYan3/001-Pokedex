@@ -38,36 +38,5 @@ async function fetchData() {
   }
 }
 
-function loadMore() {
-  const nextLimit = generationLimits.find(limit => limit > pageSize);
-
-  if (nextLimit && pageSize + step < nextLimit) {
-    pageSize += step;
-  } 
-  else if (nextLimit && pageSize < nextLimit) {
-    pageSize = nextLimit;
-  } 
-  else {
-    alert("Alle Generationen sind geladen!");
-    return;
-  }
-
-  fetchData();
-}
-
-function openInfo() {
-  // Klick auf eine Karte öffnet den Modal-Overlay
-  openPokemonModal();
-}
-
-function openPokemonModal() {
-  const modal = document.getElementById('pokemon-modal');
-  if (!modal) return;
-  modal.hidden = false; // Overlay anzeigen
-  document.body.classList.add('modal-open'); // Scroll sperren
-}
-
-// Optional global verfügbar
-window.openPokemonModal = openPokemonModal;
 // Daten beim Laden der Seite abrufen
 document.addEventListener("DOMContentLoaded", fetchData);
