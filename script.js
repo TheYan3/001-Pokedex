@@ -38,5 +38,27 @@ async function fetchData() {
   }
 }
 
-// Daten beim Laden der Seite abrufen
+function openModal(name, id, imgUrl, type) {
+  pokemonModal.classList.add("is-open");
+  pokemonModal.hidden = false;
+
+  modalName.textContent = name;
+  modalId.textContent = `#${String(id).padStart(3, "0")}`;
+  modalImg.src = imgUrl;
+  modalTypes.textContent = type;
+  modalHero.classList.add(`type-${type}`);
+
+}
+
+function closeModal() {
+  pokemonModal.classList.remove("is-open");
+  pokemonModal.hidden = true; 
+}
+
+pokemonModal.addEventListener("click", (event) => {
+  if (event.target === pokemonModal || event.target.id === "modal-close") {
+    closeModal();
+  }
+});
+
 document.addEventListener("DOMContentLoaded", fetchData);

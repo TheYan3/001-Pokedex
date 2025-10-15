@@ -11,3 +11,9 @@ let isLoading = false;
 
 const pokemonContainer = document.getElementById("pokemon-container");
 const statusMessage = document.getElementById("status-message");
+const pokemonModal = document.getElementById("pokemon-modal");
+const modalName = document.getElementById("modal-name");
+const modalId = document.getElementById("modal-id");
+const modalImg = document.getElementById("modal-image");
+const modalTypes = document.getElementById("modal-types");
+const modalHero = document.getElementById("modal-hero");

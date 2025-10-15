@@ -1,6 +1,6 @@
 function pokemonCardTemplate({ name, id, imgUrl, type }) {
     return `
-      <article class="pokemon-card type-${type}" data-id="${id}" data-name="${name}">
+      <article onclick="openModal('${name}', ${id}, '${imgUrl}', '${type}')"  class="pokemon-card type-${type}" data-id="${id}" data-name="${name}">
         <div class="type-bg">
           <img class="img-type" src="./assets/img/types/${type}-img.svg" alt="${type}" />
         </div>
