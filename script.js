@@ -42,10 +42,11 @@ function openModal(name, id, imgUrl, type) {
   pokemonModal.classList.add("is-open");
   pokemonModal.hidden = false;
 
-  modalName.textContent = name;
+  modalName.textContent = name.charAt(0).toUpperCase() + name.slice(1);
   modalId.textContent = `#${String(id).padStart(3, "0")}`;
   modalImg.src = imgUrl;
-  modalTypes.textContent = type;
+  modalTypes.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+
   modalHero.classList.add(`type-${type}`);
 
 }
@@ -53,7 +54,13 @@ function openModal(name, id, imgUrl, type) {
 function closeModal() {
   pokemonModal.classList.remove("is-open");
   pokemonModal.hidden = true; 
+  modalHero.classList.remove(modalHero.classList[1]);
 }
+
+
+
+
+
 
 pokemonModal.addEventListener("click", (event) => {
   if (event.target === pokemonModal || event.target.id === "modal-close") {
