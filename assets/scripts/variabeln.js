@@ -10,6 +10,7 @@ let renderedCount = 0;
 let isLoading = false;
 
 let currentId = null;
+currentPokemonData = null;
 
 const pokemonContainer = document.getElementById("pokemon-container");
 const statusMessage = document.getElementById("status-message");
@@ -22,3 +23,9 @@ const modalHero = document.getElementById("modal-hero");
 const searchInput = document.getElementById("search-input");
 const loadMoreBtn = document.getElementById("load-more");
 const modalSecTypes = document.getElementById("modal-secTypes");
+const aboutRef = document.getElementById("modal-about");
+const statsRef = document.getElementById("modal-stats");
+const shinyRef = document.getElementById("modal-shiny");
+const evolutionRef = document.getElementById("modal-evolution");
+const modalNav = document.getElementById("modal-nav-btns");
+const panelRef  = document.getElementById("modal-panel");

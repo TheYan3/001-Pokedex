@@ -17,17 +17,46 @@ function pokemonCardTemplate({ name, id, imgUrl, type, secType }) {
         <div class="pokemon-info">
           <span class="pokemon-id">#${String(id).padStart(3, "0")}</span>
           <h2>${name.charAt(0).toUpperCase() + name.slice(1)}</h2>
+          <div class="pokemon-types">
+          </div>
         </div>
       </article>
     `;
   }
   
   function errorTemplate() {
-    return `<p>⚠️ Fehler beim Laden der Pokémon!</p>`;
+    return `<p>⚠️ Error loading Pokémon!</p>`;
   }
 
   function isLoadingTemplate() {
-    return `Lade Pokémon...`;
+    return `Load Pokémon...`;
   }
   
-  
+  function loadPanelBtn() {
+    modalNav.innerHTML = `
+    <button
+                  onclick="showAbout(currentPokemonData)"
+                  class="modal-tab is-active"
+                  data-tab="about"
+                  role="tab"
+                  aria-controls="modal-panel-about">
+                  About
+               </button>
+               <button
+                  onclick="showStats(currentPokemonData)"
+                  class="modal-tab"
+                  data-tab="stats"
+                  role="tab"
+                  aria-controls="modal-panel-stats">
+                  Base Stats
+               </button>
+               <button
+                  onclick="showShiny(currentPokemonData)"
+                  class="modal-tab"
+                  data-tab="shiny"
+                  role="tab"
+                  aria-controls="modal-panel-shiny">
+                  Shiny
+               </button>
+    `;
+  }

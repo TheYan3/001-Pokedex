@@ -26,12 +26,11 @@ async function fetchData() {
   }
 }
 
-
 function renderPokemonCard(name, id, imgUrl, type, secType) {
   pokemonContainer.innerHTML += pokemonCardTemplate(name, id, imgUrl, type, secType)
   }
 
-function openModal(name, id, imgUrl, type, secType) {
+async function openModal(name, id, imgUrl, type, secType) {
     currentId = Number(id);
     pokemonModal.classList.add("is-open");
     pokemonModal.hidden = false;
@@ -39,50 +38,32 @@ function openModal(name, id, imgUrl, type, secType) {
     modalId.textContent = `#${String(id).padStart(3, "0")}`;
     modalImg.src = imgUrl;
     modalTypes.textContent = type.charAt(0).toUpperCase() + type.slice(1);
-    modalHero.classList.add(`type-${type}`);
     modalSecTypes.textContent = secType.charAt(0).toUpperCase() + secType.slice(1);
 
-    fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-    .then(res => res.json())
-    .then(pokemon => {
-      showAbout(pokemon);
-      showStats(pokemon); 
-    });
+    [...modalHero.classList]
+    .filter(c => c.startsWith("type-"))
+    .forEach(c => modalHero.classList.remove(c));
+    modalHero.classList.add(`type-${type}`);
 
-    checkNavButtons();
+    try {
+      // Pokémon-Daten laden
+      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+      const pokemon = await res.json();
+  
+      loadPanelBtn();
+      currentPokemonData = pokemon;
+      showAbout(pokemon)
+
+      checkNavButtons();
+  } catch (err) {
+    console.error("Fehler beim Laden des Pokémon:", err);
   }
-
-function closeModal() {
-  pokemonModal.classList.remove("is-open");
-  pokemonModal.hidden = true; 
-  modalHero.classList.remove(modalHero.classList[1]);
-}
-
-function getTypeFromClass(element) {
-  let classes = element.className.split(" "); 
-  for (let i = 0; i < classes.length; i++) {
-    if (classes[i].startsWith("type-")) { 
-      return classes[i].replace("type-", ""); 
-  }
-  return ""; 
-}
-}
-
-function openModalFromCard(card) {
-  if (!card) return;
-
-  let id = Number(card.dataset.id);
-  let name = card.dataset.name;
-  let imgUrl = card.querySelector(".pokemon-img").src;
-  let type = getTypeFromClass(card);
-  let secType = card.dataset.sectype || "";
-
-  openModal(name, id, imgUrl, type, secType);
 }
 
 function showNext() {
-  let nextId = currentId + 1; 
-  let nextCard = document.querySelector(`article[data-id="${nextId}"]`);
+  const nextId = currentId + 1;
+  const nextCard = document.querySelector(`article[data-id="${nextId}"]`);
+  if (!nextCard) return; 
   openModalFromCard(nextCard);
 }
 
@@ -92,20 +73,14 @@ function showPrev() {
   openModalFromCard(prevCard);
 }
 
-function checkNavButtons() {
-  let nextCard = document.querySelector(`article[data-id="${currentId + 1}"]`);
-  let prevCard = document.querySelector(`article[data-id="${currentId - 1}"]`);
-
-  let nextBtn = document.getElementById("modal-next");
-  let prevBtn = document.getElementById("modal-prev");
-
-  
-  nextBtn.disabled = !nextCard;
-  prevBtn.disabled = !prevCard;
-}
-
 document.getElementById("modal-next").addEventListener("click", showNext);
 document.getElementById("modal-prev").addEventListener("click", showPrev);
+
+function closeModal() {
+  pokemonModal.classList.remove("is-open");
+  pokemonModal.hidden = true; 
+  modalHero.classList.remove(modalHero.classList[1]);
+}
 
 function loadMore() {
   const nextLimit = generationLimits.find(limit => limit > pageSize);
