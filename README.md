@@ -18,7 +18,7 @@ This project demonstrates my front-end development skills and attention to user 
 ---
 
 ## 🎯 Purpose
-This Pokédex was created to **showcase my abilities** as a web developer and designer — from API integration and responsive layouts to accessibility and UI interactions.  
+This Pokédex was created to **showcase my abilities** as a web developer — from API integration and responsive layouts to accessibility and UI interactions.  
 It’s made for anyone who wants to **get to know me** and see what I can build from scratch.
 
 ---
