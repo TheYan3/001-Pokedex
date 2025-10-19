@@ -10,13 +10,6 @@
 A clean and interactive **Pokédex** built with pure **HTML, CSS, and JavaScript**, using the [PokéAPI](https://pokeapi.co/) to display detailed information about all Pokémon.  
 This project demonstrates my front-end development skills and attention to user experience, accessibility, and data handling.
 
----
-
-## 🚀 Live Demo
-👉 [Coming soon or insert your link here]
-
----
-
 ## 🎯 Purpose
 This Pokédex was created to **showcase my abilities** as a web developer — from API integration and responsive layouts to accessibility and UI interactions.  
 It’s made for anyone who wants to **get to know me** and see what I can build from scratch.
