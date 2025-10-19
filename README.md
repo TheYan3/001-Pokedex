@@ -61,7 +61,7 @@ It’s made for anyone who wants to **get to know me** and see what I can build 
 1. **Clone the repository**
    ```bash
    git clone https://github.com/TheYan3/001-Pokedex.git
-   cd pokedex
+   cd 001-Pokedex
 
    Open the project
 Simply open index.html in your browser.
