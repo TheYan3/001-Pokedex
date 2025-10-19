@@ -1,8 +1,4 @@
 async function fetchData() {
-  if (isLoading) return;
-  isLoading = true;
-  statusMessage.hidden = false;
-  statusMessage.textContent = isLoadingTemplate();
 
   try {
     const data = await (await fetch(`${BASE_URL}?limit=${pageSize}&offset=${offset}`)).json();
@@ -83,21 +79,15 @@ function closeModal() {
 }
 
 function loadMore() {
-  const nextLimit = generationLimits.find(limit => limit > pageSize);
-
-  if (nextLimit && pageSize + step < nextLimit) {
-    pageSize += step;
-  } 
-  else if (nextLimit && pageSize < nextLimit) {
-    pageSize = nextLimit;
-  } 
-  else {
-    alert("Alle Generationen sind geladen!");
+  if (isLoading){
     return;
+  }else {
+  isLoading = true;
+  statusMessage.hidden = false;
+  statusMessage.textContent = isLoadingTemplate();
+  checkGenerations();
   }
-
-  return fetchData();
-}
+} 
 
 pokemonModal.addEventListener("click", (event) => {
   if (event.target === pokemonModal || event.target.id === "modal-close") {
@@ -120,8 +110,10 @@ function applySearchFilter(query) {
     const name = (card.dataset.name || '').toLowerCase();
     if (name.includes(search)) {
       card.classList.remove('is-hidden');
+      
     } else {
       card.classList.add('is-hidden');
+      loadMoreBtn.disabled = true;
     }
   });
 }

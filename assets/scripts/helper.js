@@ -1,3 +1,22 @@
+function checkGenerations() {
+  
+    const nextLimit = generationLimits.find(limit => limit > pageSize);
+    isLoading = true;
+  
+    if (nextLimit && pageSize + step < nextLimit) {
+      pageSize += step;
+    } 
+    else if (nextLimit && pageSize < nextLimit) {
+      pageSize = nextLimit;
+    } 
+    else {
+      alert("Alle Generationen sind geladen!");
+      return;
+    }
+  
+    return fetchData();
+  }
+
 function getIdFromSpeciesUrl(url) {
     const match = url.match(/\/pokemon-species\/(\d+)\//);
     return match ? Number(match[1]) : null;
@@ -19,7 +38,7 @@ function getIdFromSpeciesUrl(url) {
     
     openModal(name, id, imgUrl, type, secType);
   }
-  
+
   function checkNavButtons() {
     let nextCard = document.querySelector(`article[data-id="${currentId + 1}"]`);
     let prevCard = document.querySelector(`article[data-id="${currentId - 1}"]`);

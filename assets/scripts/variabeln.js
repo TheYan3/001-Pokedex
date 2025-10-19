@@ -29,3 +29,4 @@ const shinyRef = document.getElementById("modal-shiny");
 const evolutionRef = document.getElementById("modal-evolution");
 const modalNav = document.getElementById("modal-nav-btns");
 const panelRef  = document.getElementById("modal-panel");
+const inputRef = document.getElementById("search-input");
