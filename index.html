@@ -12,10 +12,12 @@
       <link rel="stylesheet" href="./assets/Styles/root.css" />
       <link rel="stylesheet" href="./assets/Styles/querry.css" />
       <link rel="stylesheet" href="./assets/Styles/pookeTypes.css" />
-      <script src="./assets/scripts/db.js"></script>
-      <script src="./assets/scripts/helper.js"></script>
-      <script src="./assets/scripts/templates.js"></script>
-      <script src="./assets/scripts/panels.js"></script>
+      <script src="./assets/scripts/variabeln.js" defer></script>
+      <script src="./assets/scripts/db.js" derfer></script>
+      <script src="./assets/scripts/helper.js" defer></script>
+      <script src="./assets/scripts/templates.js" defer></script>
+      <script src="./assets/scripts/panels.js" defer></script>
+      <script src="script.js" defer></script>
    </head>
    <body>
       <div id="main-wrapper">
@@ -26,12 +28,19 @@
                   alt="PokeBall-icon" />Pokédex
             </h1>
             <label class="search-group" for="search-input">
-               <span class="sr-only">Search for Pokémon</span>
+               <span class="sr-only">Search Pokémon...</span>
                <input
                   id="search-input"
                   type="search"
-                  placeholder="Pokemon suchen..."
-                  autocomplete="off" />
+                  placeholder="Search Pokémon..."
+                  autocomplete="off"
+                  minlength="3"
+                  required
+                  aria-describedby="search-hint" />
+               <small
+                  id="search-hint"
+                  class="field-hint"
+                  aria-live="polite"></small>
                <img
                   src="./assets/img/icon-team.png"
                   alt="pokemon search Icon" />
@@ -97,8 +106,5 @@
             </div>
          </article>
       </div>
-
-      <script src="script.js" defer></script>
-      <script src="./assets/scripts/variabeln.js"></script>
    </body>
 </html>

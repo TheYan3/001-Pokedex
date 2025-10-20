@@ -2,18 +2,6 @@
    box-sizing: border-box;
 }
 
-#pokemon-container:has(article:hover) article:not(:hover) {
-   filter: blur(4px);
-}
-
-#pokemon-container article {
-   transition: filter 0.3s ease 1s; /* unscharf wird verzögert */
-}
-#pokemon-container article:hover,
-#pokemon-container:has(article:hover) article:hover {
-   transition-delay: 0s; /* zurück sofort */
-}
-
 body {
    margin: 0;
    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -314,6 +302,7 @@ body.modal-open {
    cursor: pointer;
    display: grid;
    place-items: center;
+   z-index: 2;
 }
 
 .modal-close:hover {
@@ -384,6 +373,7 @@ body.modal-open {
    height: 160px;
    object-fit: contain;
    filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.35));
+   z-index: 1;
 }
 
 .modal-tabs {
@@ -425,6 +415,7 @@ body.modal-open {
 .modal-panels {
    padding: 24px 32px 12px;
    display: grid;
+   height: 210px;
 }
 
 .modal-panel {

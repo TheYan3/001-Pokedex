@@ -105,7 +105,6 @@ function applySearchFilter(query) {
     cards.forEach(card => card.classList.remove('is-hidden'));
     return;
   }
-
   cards.forEach(card => {
     const name = (card.dataset.name || '').toLowerCase();
     if (name.includes(search)) {
@@ -113,7 +112,7 @@ function applySearchFilter(query) {
       
     } else {
       card.classList.add('is-hidden');
-      loadMoreBtn.disabled = true;
+      loadMoreBtn.classList.add('is-hidden');
     }
   });
 }

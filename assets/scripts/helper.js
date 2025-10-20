@@ -46,7 +46,6 @@ function getIdFromSpeciesUrl(url) {
     let nextBtn = document.getElementById("modal-next");
     let prevBtn = document.getElementById("modal-prev");
     
-    
     nextBtn.disabled = !nextCard;
     prevBtn.disabled = !prevCard;
   }
