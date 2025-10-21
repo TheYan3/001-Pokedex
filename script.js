@@ -35,11 +35,12 @@ async function openModal(name, id, imgUrl, type, secType) {
     modalImg.src = imgUrl;
     modalTypes.textContent = type.charAt(0).toUpperCase() + type.slice(1);
     modalSecTypes.textContent = secType.charAt(0).toUpperCase() + secType.slice(1);
+    modalCard.classList.add(`bg-${type}`);
 
-    [...modalHero.classList]
-    .filter(c => c.startsWith("type-"))
-    .forEach(c => modalHero.classList.remove(c));
-    modalHero.classList.add(`type-${type}`);
+    [...modalCard.classList]
+    .filter(c => c.startsWith("bg-"))
+    .forEach(c => modalCard.classList.remove(c));
+    modalCard.classList.add(`bg-${type}`);
 
     try {
       // Pokémon-Daten laden
