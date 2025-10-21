@@ -16,6 +16,7 @@ function showAbout(pokemon) {
       </div>
     </section> 
     `;
+    setActiveTab('about');
   }
   
   function showStats(pokemon) {
@@ -39,6 +40,7 @@ function showAbout(pokemon) {
       </section>
       
     `).join("");
+    setActiveTab('stats');
   }
   
   
@@ -57,6 +59,7 @@ function showAbout(pokemon) {
      </div>
     </section>
     `;
+    setActiveTab('shiny');
   }
 
   

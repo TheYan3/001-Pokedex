@@ -49,3 +49,8 @@ function getIdFromSpeciesUrl(url) {
     nextBtn.disabled = !nextCard;
     prevBtn.disabled = !prevCard;
   }
+
+  function setActiveTab(tabName) {
+    document.querySelectorAll('.modal-tab')
+      .forEach(btn => btn.classList.toggle('is-active', btn.dataset.tab === tabName));
+  }

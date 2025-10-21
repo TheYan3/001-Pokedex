@@ -30,6 +30,7 @@ const evolutionRef = document.getElementById("modal-evolution");
 const modalNav = document.getElementById("modal-nav-btns");
 const panelRef  = document.getElementById("modal-panel");
 const inputRef = document.getElementById("search-input");
+const modalCard = document.getElementById("modal-card");
 
 let timer = null;
 let warnedShort = false; 
