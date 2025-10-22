@@ -5,16 +5,29 @@
 body {
    margin: 0;
    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-   background-color: #ffffff;
+   background-color: #525252;
+   background-image: url("./assets/img/pokemonBg.png");
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-position: center top;
+   background-size: cover;
+   filter: blur(0, 5px);
    color: var(--primary-text);
    min-height: 100vh;
    display: flex;
    justify-content: center;
-   background-image: url("./assets/img/pokeball-white.png");
-   background-repeat: no-repeat;
-   background-attachment: fixed;
-   background-position: 72.8% -100%;
-   background-size: 1000px;
+}
+
+body::before {
+   content: "";
+   position: fixed;
+   inset: 0;
+   pointer-events: none;
+   z-index: 0;
+
+   background: rgba(255, 255, 255, 0.08);
+   backdrop-filter: blur(10px) saturate(140%);
+   -webkit-backdrop-filter: blur(10px) saturate(140%);
 }
 
 body.modal-open {
@@ -22,6 +35,8 @@ body.modal-open {
 }
 
 #main-wrapper {
+   position: relative;
+   z-index: 1;
    width: 100%;
    max-width: 1820px;
    padding: 40px 20px 100px;
@@ -31,47 +46,78 @@ body.modal-open {
 }
 
 .page-header {
-   display: flex;
-   flex-wrap: wrap;
+   display: grid;
+   grid-template-columns: auto 1fr;
    align-items: center;
-   gap: 16px;
+   gap: 8px;
+   padding: 6px 8px;
+   margin: 0;
+   background: rgba(255, 255, 255, 0.1);
+   border: 1px solid rgba(255, 255, 255, 0.35);
+   border-radius: 999px;
+   backdrop-filter: blur(10px) saturate(140%);
+   -webkit-backdrop-filter: blur(10px) saturate(140%);
+   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+   overflow: hidden;
 }
 
 .page-header h1 {
-   font-size: 2rem;
    margin: 0;
-   flex: 1 1 200px;
-}
-
-.search-group {
-   position: relative;
-   flex: 1 1 260px;
-   max-width: 360px;
-}
-
-.search-group input {
-   width: 100%;
-   padding: 12px 44px 12px 16px;
+   display: inline-flex;
+   align-items: center;
+   gap: 8px;
+   padding: 8px 12px;
+   background: rgba(255, 255, 255, 0.18);
+   border: 1px solid rgba(255, 255, 255, 0.45);
    border-radius: 999px;
-   border: 1px solid #d2d2d2;
-   background-color: #f7f7f7;
+   color: #000000;
+   line-height: 1;
+   white-space: nowrap;
+}
+.page-header h1 img {
+   width: 28px;
+   height: 28px;
+}
+
+.page-header .search-group {
+   position: relative;
+   display: flex;
+   align-items: center;
+   padding: 6px 12px;
+   background: rgba(255, 255, 255, 0.18);
+   border: 1px solid rgba(255, 255, 255, 0.45);
+   border-radius: 999px;
+}
+
+.page-header .search-group input {
+   width: 100%;
+   padding: 8px 44px 8px 10px;
+   border: none;
+   background: transparent;
+   color: #000000;
    font-size: 1rem;
-}
-
-.search-group input:focus {
    outline: none;
-   border-color: #4f46e5;
-   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
-   background-color: #ffffff;
+}
+.page-header .search-group input::placeholder {
+   color: rgb(0, 0, 0);
+}
+.page-header .search-group input:focus {
+   outline: none;
 }
 
-.search-group img {
+.page-header .search-group img {
    position: absolute;
-   right: 16px;
+   right: 12px;
    top: 50%;
    transform: translateY(-50%);
-   width: 30px;
-   height: 30px;
+   width: 24px;
+   height: 24px;
+   filter: brightness(100%);
+}
+
+.modal-tab::after,
+.modal-tab.is-active::after {
+   content: none !important;
 }
 
 #pokemon-container {
@@ -116,6 +162,26 @@ body.modal-open {
    transition: transform 0.15s ease, box-shadow 0.15s ease;
    margin-top: 100px;
    overflow: visible;
+   border: 1px solid rgba(255, 255, 255, 0.28);
+   box-shadow: 0 18px 35px rgba(0, 0, 0, 0.45);
+}
+
+.pokemon-card::after {
+   content: "";
+   position: absolute;
+   inset: 0;
+   pointer-events: none;
+   border-radius: inherit;
+   background: radial-gradient(
+         120% 100% at 110% 40%,
+         rgba(255, 255, 255, 0.08),
+         transparent 55%
+      ),
+      radial-gradient(
+         120% 100% at -10% 60%,
+         rgba(0, 0, 0, 0.18),
+         transparent 60%
+      );
 }
 
 .pokemon-img {
@@ -149,16 +215,18 @@ body.modal-open {
 .type-bg {
    position: absolute;
    inset: 0;
-   overflow: hidden;
    border-radius: inherit;
+   overflow: hidden;
 }
-
 .img-type {
    position: absolute;
-   bottom: -20px;
-   right: 110px;
-   width: 185px;
-   opacity: 0.4;
+   right: 14px;
+   bottom: 6px;
+   width: 200px;
+   height: auto;
+   opacity: 0.2; /* dezenter */
+   filter: contrast(120%) saturate(120%) blur(0.2px);
+   mix-blend-mode: soft-light; /* fügt sich in die Karte */
 }
 
 .pokemon-info {
@@ -168,19 +236,19 @@ body.modal-open {
    right: -12px;
 }
 .pokemon-info h2 {
-   margin: 0 0 12px;
-   font-size: 32px;
-   letter-spacing: 0.5px;
+   margin: 0 0 6px;
+   font-size: 1.75rem;
+   letter-spacing: 0.3px;
+   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
    position: absolute;
    bottom: 10px;
-   text-shadow: #0000009e 1px 1px 2px, rgba(0, 0, 0, 0.2) 0 0 6px;
 }
 
 .pokemon-id {
-   font-weight: 600;
-   opacity: 0.85;
-   font-size: 24px;
-   text-shadow: #0000009e 1px 1px 2px, rgba(0, 0, 0, 0.2) 0 0 6px;
+   font-weight: 700;
+   opacity: 0.9;
+   font-size: 0.95rem;
+   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
 }
 
 .pokemon-overflow {
@@ -217,6 +285,9 @@ body.modal-open {
 .load-more-wrapper {
    display: flex;
    justify-content: center;
+   position: relative;
+   z-index: 3; /* über den Karten/Bildern */
+   margin-top: 24px; /* etwas Abstand zur letzten Reihe */
 }
 
 #load-more {
@@ -230,6 +301,8 @@ body.modal-open {
    cursor: pointer;
    transition: transform 0.15s ease, box-shadow 0.15s ease;
    box-shadow: 0 12px 24px rgba(79, 70, 229, 0.35);
+   position: relative;
+   z-index: 3;
 }
 
 #load-more:hover:not([disabled]) {
@@ -372,50 +445,73 @@ body.modal-open {
    width: 160px;
    height: 160px;
    object-fit: contain;
-   filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.35));
+   filter: drop-shadow(0 14px 18px rgba(255, 255, 255, 0.95));
    z-index: 1;
 }
 
 .modal-tabs {
-   display: flex;
-   justify-content: space-around;
+   display: grid;
+   grid-auto-flow: column;
+   grid-auto-columns: 1fr;
    gap: 8px;
-   padding: 0 20px;
-   background: #ffffff;
-   border-bottom: 1px solid #e5e7eb;
+   padding: 6px 8px;
+   margin: 8px;
+
+   background: rgba(255, 255, 255, 0.1);
+   border: 1px solid rgba(255, 255, 255, 0.35);
+   border-radius: 999px;
+
+   backdrop-filter: blur(10px) saturate(140%);
+   -webkit-backdrop-filter: blur(10px) saturate(140%);
+
+   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+   overflow: hidden;
 }
 
 .modal-tab {
-   flex: 1;
-   border: none;
-   background: none;
-   font-weight: 600;
-   font-size: 0.95rem;
-   padding: 14px 10px;
-   cursor: pointer;
+   appearance: none;
+   display: inline-flex;
+   justify-content: center;
+   align-items: center;
+   padding: 8px 12px;
+   min-width: 0;
+
+   background: rgba(255, 255, 255, 0.18);
+   border: 1px solid rgba(255, 255, 255, 0.45);
+   border-radius: 999px;
+   color: #fff;
+
    position: relative;
-   color: #6b7280;
+   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+   outline: none;
 }
 
 .modal-tab.is-active {
-   color: #111827;
+   background: rgba(255, 255, 255, 0.32);
+   border-color: rgba(255, 255, 255, 0.65);
+   color: #0f172a;
+   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25),
+      0 1px 8px rgba(255, 255, 255, 0.12);
 }
 
-.modal-tab.is-active::after {
-   content: "";
-   position: absolute;
-   left: 24px;
-   right: 24px;
-   bottom: 6px;
-   height: 3px;
-   border-radius: 999px;
-   background: #6366f1;
+.modal-tab:focus,
+.modal-tab:focus-visible {
+   outline: none;
+   box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.35);
 }
 
 .modal-panels {
-   padding: 24px 32px 12px;
+   padding: 12px 32px 12px;
    display: grid;
    height: 210px;
+   background: rgba(255, 255, 255, 0.18);
+   border: 1px solid rgba(255, 255, 255, 0.25);
+   border-radius: 14px;
+   margin: 8px;
+   backdrop-filter: blur(10px) saturate(140%);
+   -webkit-backdrop-filter: blur(10px) saturate(140%);
+
+   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
 }
 
 .modal-panel {
@@ -440,14 +536,15 @@ body.modal-open {
 }
 
 .about-item span:first-child {
-   font-size: 0.85rem;
-   color: #6b7280;
+   font-size: 0.95rem;
+   color: #ffffff;
    text-transform: uppercase;
    letter-spacing: 0.08em;
 }
 
 .about-item span:last-child {
    font-weight: 600;
+   padding: 0 32px;
 }
 
 .stats-list {
@@ -518,7 +615,7 @@ body.modal-open {
    width: 180px;
    height: 180px;
    object-fit: contain;
-   background: #f3f4f6;
+   background: #f3f4f636;
    border-radius: 24px;
    padding: 16px;
    box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.35);
@@ -550,7 +647,7 @@ body.modal-open {
    display: flex;
    justify-content: space-between;
    align-items: center;
-   padding: 16px 24px 24px;
+   padding: 8px 8px 24px;
 }
 
 .modal-nav button {
@@ -559,6 +656,11 @@ body.modal-open {
    cursor: pointer;
    transition: transform 0.15s ease, box-shadow 0.15s ease;
    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.18);
+   background: rgba(255, 255, 255, 0.18);
+   border: 1px solid rgba(255, 255, 255, 0.25);
+   border-radius: 14px;
+   backdrop-filter: blur(10px) saturate(140%);
+   -webkit-backdrop-filter: blur(10px) saturate(140%);
 }
 
 .modal-nav button:hover:not([disabled]) {

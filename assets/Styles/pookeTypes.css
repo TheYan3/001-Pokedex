@@ -70,3 +70,130 @@
    background: var(--water-bg);
    color: var(--water-text);
 }
+
+.bg-bug {
+   background-image: url("../img/typesBg/bg-bug.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   color: var(--bug-text);
+}
+.bg-dark {
+   background-image: url("../img/typesBg/bg-dark.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   color: var(--dark-text);
+}
+.bg-dragon {
+   background-image: url("../img/typesBg/bg-dragon.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   color: var(--dragon-text);
+}
+.bg-electric {
+   background-image: url("../img/typesBg/bg-electric.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   color: var(--electric-text);
+}
+.bg-fairy {
+   background-image: url("../img/typesBg/bg-fairy.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   color: var(--fairy-text);
+}
+.bg-fighting {
+   background-image: url("../img/typesBg/bg-fighting.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   color: var(--fighting-text);
+}
+.bg-fire {
+   background-image: url("../img/typesBg/bg-fire.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   color: var(--fire-text);
+}
+.type-flying {
+   background-image: url("../img/typesBg/bg-flying.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   color: var(--flying-text);
+}
+.bg-ghost {
+   background-image: url("../img/typesBg/bg-ghost.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   color: var(--ghost-text);
+}
+.bg-grass {
+   background-image: url("../img/typesBg/bg-grass.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   color: var(--grass-text);
+}
+.bg-ground {
+   background-image: url("../img/typesBg/bg-ground.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   color: var(--ground-text);
+}
+.bg-ice {
+   background-image: url("../img/typesBg/bg-ice.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   color: var(--ice-text);
+}
+.bg-normal {
+   background-image: url("../img/typesBg/bg-normal.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   color: var(--normal-text);
+}
+.bg-poison {
+   background-image: url("../img/typesBg/bg-poison.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   color: var(--poison-text);
+}
+.bg-psychic {
+   background-image: url("../img/typesBg/bg-psychic.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   color: var(--psychic-text);
+}
+.bg-rock {
+   background-image: url("../img/typesBg/bg-rock.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   color: var(--rock-text);
+}
+.bg-steel {
+   background-image: url("../img/typesBg/bg-steel.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   color: var(--steel-text);
+}
+.bg-water {
+   background-image: url("../img/typesBg/bg-water.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   color: var(--water-text);
+}
