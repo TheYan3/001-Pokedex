@@ -68,6 +68,7 @@ Now simply open index.html in your browser.
 
 🖼️ Screenshot
 <img width="1494" height="927" alt="image" src="https://github.com/user-attachments/assets/63c52e50-b411-4679-a2ea-f90c8b4f5969" />
+<img width="388" height="505" alt="image" src="https://github.com/user-attachments/assets/5c5bcda7-cf93-466d-84d3-5809b5cffd40" />
 
 ---
 
