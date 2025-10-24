@@ -113,7 +113,6 @@ function applySearchFilter(query) {
       
     } else {
       card.classList.add('is-hidden');
-      loadMoreBtn.classList.add('is-hidden');
     }
   });
 }

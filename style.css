@@ -11,7 +11,6 @@ body {
    background-attachment: fixed;
    background-position: center top;
    background-size: cover;
-   filter: blur(0, 5px);
    color: var(--primary-text);
    min-height: 100vh;
    display: flex;
@@ -117,7 +116,7 @@ body.modal-open {
 
 .modal-tab::after,
 .modal-tab.is-active::after {
-   content: none !important;
+   content: none;
 }
 
 #pokemon-container {
@@ -192,7 +191,7 @@ body.modal-open {
    filter: drop-shadow(0 12px 14px rgb(0, 0, 0));
    position: absolute;
    top: -90px;
-   z-index: 2;
+   z-index: 1;
    transition: 1500ms ease;
    transform-origin: center center;
 }
@@ -283,11 +282,11 @@ body.modal-open {
 }
 
 .load-more-wrapper {
+   position: relative;
+   z-index: 5;
    display: flex;
    justify-content: center;
-   position: relative;
-   z-index: 3; /* über den Karten/Bildern */
-   margin-top: 24px; /* etwas Abstand zur letzten Reihe */
+   padding: 24px 0;
 }
 
 #load-more {
@@ -302,7 +301,7 @@ body.modal-open {
    transition: transform 0.15s ease, box-shadow 0.15s ease;
    box-shadow: 0 12px 24px rgba(79, 70, 229, 0.35);
    position: relative;
-   z-index: 3;
+   z-index: 6;
 }
 
 #load-more:hover:not([disabled]) {
@@ -676,5 +675,5 @@ body.modal-open {
 }
 
 .is-hidden {
-   display: none !important;
+   display: none;
 }

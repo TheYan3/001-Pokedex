@@ -11,6 +11,7 @@ A clean and interactive **Pokédex** built with pure **HTML, CSS, and JavaScript
 This project demonstrates my front-end development skills and attention to user experience, accessibility, and data handling.
 
 ## 🎯 Purpose
+
 This Pokédex was created to **showcase my abilities** as a web developer — from API integration and responsive layouts to accessibility and UI interactions.  
 It’s made for anyone who wants to **get to know me** and see what I can build from scratch.
 
@@ -18,41 +19,42 @@ It’s made for anyone who wants to **get to know me** and see what I can build 
 
 ## 🧠 Features
 
-- 🔎 **Search & Autocomplete** – quickly find any Pokémon  
-- 🗂️ **Filter & Sort** – by name or generation  
-- 📄 **Detailed Pokémon Pages** – view stats, shiny forms, and type information  
-- 🖼️ **Official Artworks** – pulled directly from the PokéAPI artwork repository  
-- 📊 **Base Stats Chart** – visualized data for each Pokémon  
-- ♿ **Accessible** – keyboard navigation & ARIA support (work in progress)  
-- 📱 **Responsive Design** – optimized for mobile and desktop  
+-  🔎 **Search & Autocomplete** – quickly find any Pokémon
+-  🗂️ **Filter & Sort** – by name or generation
+-  📄 **Detailed Pokémon Pages** – view stats, shiny forms, and type information
+-  🖼️ **Official Artworks** – pulled directly from the PokéAPI artwork repository
+-  📊 **Base Stats Chart** – visualized data for each Pokémon
+-  ♿ **Accessible** – keyboard navigation & ARIA support (work in progress)
+-  📱 **Responsive Design** – optimized for mobile and desktop
 
 ---
 
 ## 🧩 Tech Stack
 
-| Area | Technology |
-|------|-------------|
-| Core | **HTML**, **CSS**, **JavaScript (ES6)** |
-| API | [**PokéAPI**](https://pokeapi.co/) |
-| Data Visualization | Custom JS Chart (Base Stats) |
-| Assets | Official Pokémon Artwork |
-| Accessibility | ARIA roles & Keyboard support |
-| Responsive | Mobile-first CSS design |
-| Favicon | ✅ Included |
+| Area               | Technology                              |
+| ------------------ | --------------------------------------- |
+| Core               | **HTML**, **CSS**, **JavaScript (ES6)** |
+| API                | [**PokéAPI**](https://pokeapi.co/)      |
+| Data Visualization | Custom JS Chart (Base Stats)            |
+| Assets             | Official Pokémon Artwork                |
+| Accessibility      | ARIA roles & Keyboard support           |
+| Responsive         | Mobile-first CSS design                 |
+| Favicon            | ✅ Included                             |
 
 ---
 
 ## ⚙️ PokéAPI Usage
 
-- **Endpoints used:**
-  - `/pokemon`
-  - `/type`
+-  **Endpoints used:**
 
-- **Data includes:**
-  - Pokémon name, ID, type(s)
-  - Base stats
-  - Sprites (default & shiny)
-  - Official artwork
+   -  `/pokemon`
+   -  `/type`
+
+-  **Data includes:**
+   -  Pokémon name, ID, type(s)
+   -  Base stats
+   -  Sprites (default & shiny)
+   -  Official artwork
 
 ---
 
@@ -62,6 +64,7 @@ It’s made for anyone who wants to **get to know me** and see what I can build 
    ```bash
    git clone https://github.com/TheYan3/001-Pokedex.git
    cd 001-Pokedex
+   ```
 
 Now simply open index.html in your browser.
 (No server or build tools required)
@@ -84,9 +87,8 @@ This project is open source and available under the MIT License.
 ❤️ Credits
 
 PokéAPI
- for all Pokémon data
+for all Pokémon data
 
 Official Pokémon Artwork Repository
 
 Pokémon © Nintendo / Game Freak / The Pokémon Company
-
