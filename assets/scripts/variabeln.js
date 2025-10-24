@@ -12,6 +12,13 @@ let isLoading = false;
 let currentId = null;
 currentPokemonData = null;
 
+let matchCount = 0;
+let isSearching = false;
+let currentSearch = '';
+const lessSearch = 'Enter at least 3 characters so we can search for your Pokémon.'
+const noResultFound = 'No Pokémon found. Please try another name or Load more Pokémon.'
+
+
 const pokemonContainer = document.getElementById("pokemon-container");
 const statusMessage = document.getElementById("status-message");
 const pokemonModal = document.getElementById("pokemon-modal");
@@ -34,3 +41,4 @@ const modalCard = document.getElementById("modal-card");
 
 let timer = null;
 let warnedShort = false; 
+

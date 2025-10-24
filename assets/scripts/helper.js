@@ -54,3 +54,48 @@ function getIdFromSpeciesUrl(url) {
     document.querySelectorAll('.modal-tab')
       .forEach(btn => btn.classList.toggle('is-active', btn.dataset.tab === tabName));
   }
+
+function showinfo(info) {
+  if (info === noResultFound) {
+   pokemonContainer.innerHTML += searchCardTemplate(info);
+   loadMoreBtn.classList.remove("is-hidden");
+    return;
+  }
+  
+  if (info === lessSearch) {
+  pokemonContainer.innerHTML += searchCardTemplate(info);
+  loadMoreBtn.classList.add("is-hidden");	
+  return;
+}
+}
+
+function checkSearchLength(cards, search) {
+  if (search.length === 0) {
+    cards.forEach(card => card.classList.remove("is-hidden"));
+    return false;
+  }
+
+  if (search.length < 3) {
+    cards.forEach(card => card.classList.add("is-hidden"));
+    showinfo(lessSearch)
+    return false;
+  }
+  matchCount = 0;
+  return true;
+}
+
+function heandleSearchPokemon(cards, search) {
+  cards.forEach(card => {
+    const name = (card.dataset.name || "").toLowerCase();
+    if (name.includes(search)) {
+      card.classList.remove("is-hidden");
+      matchCount++;
+    } else {
+      card.classList.add("is-hidden");
+    }
+  });
+
+  if (search.length >= 3 && matchCount === 0) {
+    showinfo(noResultFound);
+  }
+}

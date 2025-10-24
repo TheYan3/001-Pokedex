@@ -1,5 +1,4 @@
 async function fetchData() {
-
   try {
     const data = await (await fetch(`${BASE_URL}?limit=${pageSize}&offset=${offset}`)).json();
     const newResults = data.results.slice(renderedCount);
@@ -23,7 +22,17 @@ async function fetchData() {
 }
 
 function renderPokemonCard(name, id, imgUrl, type, secType) {
-  pokemonContainer.innerHTML += pokemonCardTemplate(name, id, imgUrl, type, secType)
+  pokemonContainer.innerHTML += pokemonCardTemplate(name, id, imgUrl, type, secType);
+  
+  if (isSearching) {
+    const last = pokemonContainer.lastElementChild;
+    if (last && last.classList.contains('pokemon-card')) {
+      last.classList.add('is-hidden');  
+      applySearchFilter(currentSearch);  
+    }
+  } else {
+    pokemonContainer.classList.remove('is-hidden');   
+  }
   }
 
 async function openModal(name, id, imgUrl, type, secType) {
@@ -43,7 +52,6 @@ async function openModal(name, id, imgUrl, type, secType) {
     modalCard.classList.add(`bg-${type}`);
 
     try {
-      // Pokémon-Daten laden
       const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
       const pokemon = await res.json();
   
@@ -80,15 +88,14 @@ function closeModal() {
 }
 
 function loadMore() {
-  if (isLoading){
-    return;
-  }else {
+  if (isLoading) return;
+
   isLoading = true;
   statusMessage.hidden = false;
   statusMessage.textContent = isLoadingTemplate();
   checkGenerations();
-  }
-} 
+}
+
 
 pokemonModal.addEventListener("click", (event) => {
   if (event.target === pokemonModal || event.target.id === "modal-close") {
@@ -100,25 +107,20 @@ document.addEventListener("DOMContentLoaded", fetchData);
 
 function applySearchFilter(query) {
   const search = (query || "").trim().toLowerCase();
-  const cards = pokemonContainer.querySelectorAll('.pokemon-card');
+  const cards = pokemonContainer.querySelectorAll(".pokemon-card");
+  
+  pokemonContainer.querySelectorAll(".pokemon-card:not([data-id])").forEach(el => el.remove());
 
-  if (search.length < 3) {
-    cards.forEach(card => card.classList.remove('is-hidden'));
-    return;
-  }
-  cards.forEach(card => {
-    const name = (card.dataset.name || '').toLowerCase();
-    if (name.includes(search)) {
-      card.classList.remove('is-hidden');
-      
-    } else {
-      card.classList.add('is-hidden');
-    }
-  });
+  if (!checkSearchLength(cards, search)) return;
+  heandleSearchPokemon(cards, search);
 }
 
-function handleSearchInput(e) {
-  applySearchFilter(e.target.value);
+function handleSearchInput(event) {
+  applySearchFilter(event.target.value);
+
+  currentSearch = event.target.value;
+  isSearching = currentSearch.length >= 3;
+
 }
 
 if (typeof searchInput !== 'undefined' && searchInput) {

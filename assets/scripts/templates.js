@@ -23,6 +23,24 @@ function pokemonCardTemplate({ name, id, imgUrl, type, secType }) {
       </article>
     `;
   }
+
+
+function searchCardTemplate(searchInfo) {
+    return `
+      <article class="pokemon-card"      
+        <div class="type-bg">
+        </div>
+
+        <img class="pokemon-img" src="./assets/img/pngegg.png" alt="Pokemon not Found" />
+
+        <div class="pokemon-info">
+          <h2>${searchInfo}</h2>
+          <div class="pokemon-types">
+          </div>
+        </div>
+      </article>
+    `;
+  }
   
   function errorTemplate() {
     return `<p>⚠️ Error loading Pokémon!</p>`;
