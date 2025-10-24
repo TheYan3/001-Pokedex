@@ -57,13 +57,13 @@ function setActiveTab(tabName) {
 
 function showinfo(info) {
   if (info === noResultFound) {
-   pokemonContainer.innerHTML += searchCardTemplate(info);
+   pokemonContainer.innerHTML += searchInfoTemplate(info);
    loadMoreBtn.classList.remove("is-hidden");
     return;
   }
   
   if (info === lessSearch) {
-  pokemonContainer.innerHTML += searchCardTemplate(info);
+  pokemonContainer.innerHTML += searchInfoTemplate(info);
   loadMoreBtn.classList.add("is-hidden");	
   return;
 }

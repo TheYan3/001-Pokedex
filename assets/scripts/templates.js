@@ -29,15 +29,15 @@ function pokemonCardTemplate({ name, id, imgUrl, type, secType }) {
     `;
   }
 
-function searchCardTemplate(searchInfo) {
+function searchInfoTemplate(searchInfo) {
     return `
       <article class="pokemon-card"      
         <div class="type-bg">
         </div>
 
-        <img class="pokemon-img" src="./assets/img/pngegg.png" alt="Pokemon not Found" />
+        <img class="search-info-img" src="./assets/img/pngegg.png" alt="Pokemon not Found" />
 
-        <div class="pokemon-info">
+        <div class="search-info">
           <h2>${searchInfo}</h2>
           <div class="pokemon-types">
           </div>
