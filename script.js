@@ -24,7 +24,8 @@ async function fetchData() {
 function renderPokemonCard(name, id, imgUrl, type, secType) {
   pokemonContainer.innerHTML += pokemonCardTemplate(name, id, imgUrl, type, secType);
   
-  if (isSearching) {
+  if (isSearching
+  ) {
     const last = pokemonContainer.lastElementChild;
     if (last && last.classList.contains('pokemon-card')) {
       last.classList.add('is-hidden');  

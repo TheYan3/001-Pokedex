@@ -50,15 +50,9 @@
       text-align: center;
    }
 
-   .modal-hero-content {
-      grid-template-columns: 1fr;
-      justify-items: center;
-      gap: 12px;
-   }
-
    .modal-hero img {
-      width: 220px;
-      height: 220px;
+      width: 150px;
+      height: 150px;
    }
 
    .modal-types {
@@ -72,14 +66,13 @@
       grid-auto-flow: column;
       grid-auto-columns: 1fr;
       border-radius: 999px;
-      overflow: hidden;
    }
 
    .modal-tab {
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      padding: 8px 12px;
+      padding: 8px 8px;
       min-width: 0;
       outline: none;
    }
@@ -96,7 +89,7 @@
    }
 
    .modal-panels {
-      padding: 24px 24px 12px;
+      padding: 8px;
    }
 
    .about-list {
@@ -114,5 +107,16 @@
    .modal-close {
       top: 20px;
       right: 20px;
+   }
+}
+
+@media (max-width: 400px) {
+   .modal-hero-text h2 {
+      font-size: 1.5rem;
+   }
+
+   .modal-hero img {
+      width: 120px;
+      height: 120px;
    }
 }
