@@ -9,7 +9,12 @@ function pokemonCardTemplate({ name, id, imgUrl, type, secType }) {
                data-secType="${secType}">
                
         <div class="type-bg">
-          <img class="img-type" src="./assets/img/types/${type}-img.svg" alt="${type}" />
+          <img 
+          class="img-type" 
+          src="./assets/img/types/${type}-img.svg" 
+          alt="${type}" 
+          loading="lazy"
+          decoding="async" />
         </div>
 
         <img class="pokemon-img" src="${imgUrl}" alt="${name}" />
@@ -23,7 +28,6 @@ function pokemonCardTemplate({ name, id, imgUrl, type, secType }) {
       </article>
     `;
   }
-
 
 function searchCardTemplate(searchInfo) {
     return `
@@ -42,11 +46,11 @@ function searchCardTemplate(searchInfo) {
     `;
   }
   
-  function errorTemplate() {
+function errorTemplate() {
     return `<p>⚠️ Error loading Pokémon!</p>`;
   }
 
-  function isLoadingTemplate() {
+function isLoadingTemplate() {
     return `Load Pokémon...`;
   }
   

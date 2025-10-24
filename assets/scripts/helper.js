@@ -22,12 +22,12 @@ function getIdFromSpeciesUrl(url) {
     return match ? Number(match[1]) : null;
   }
 
-  function getTypeFromClass(card) {
+function getTypeFromClass(card) {
     const clasRef = [...card.classList].find(c => c.startsWith('type-'));
     return clasRef ? clasRef.replace('type-', '') : '';
   }
 
-  function openModalFromCard(card) {
+function openModalFromCard(card) {
     if (!card) return;
     
     let id = Number(card.dataset.id);
@@ -39,7 +39,7 @@ function getIdFromSpeciesUrl(url) {
     openModal(name, id, imgUrl, type, secType);
   }
 
-  function checkNavButtons() {
+function checkNavButtons() {
     let nextCard = document.querySelector(`article[data-id="${currentId + 1}"]`);
     let prevCard = document.querySelector(`article[data-id="${currentId - 1}"]`);
     
@@ -50,7 +50,7 @@ function getIdFromSpeciesUrl(url) {
     prevBtn.disabled = !prevCard;
   }
 
-  function setActiveTab(tabName) {
+function setActiveTab(tabName) {
     document.querySelectorAll('.modal-tab')
       .forEach(btn => btn.classList.toggle('is-active', btn.dataset.tab === tabName));
   }
@@ -67,7 +67,7 @@ function showinfo(info) {
   loadMoreBtn.classList.add("is-hidden");	
   return;
 }
-}
+  }
 
 function checkSearchLength(cards, search) {
   if (search.length === 0) {
@@ -82,7 +82,7 @@ function checkSearchLength(cards, search) {
   }
   matchCount = 0;
   return true;
-}
+  }
 
 function heandleSearchPokemon(cards, search) {
   cards.forEach(card => {
@@ -98,4 +98,4 @@ function heandleSearchPokemon(cards, search) {
   if (search.length >= 3 && matchCount === 0) {
     showinfo(noResultFound);
   }
-}
+  }

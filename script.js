@@ -19,7 +19,7 @@ async function fetchData() {
     isLoading = false;
     statusMessage.hidden = true;
   }
-}
+  }
 
 function renderPokemonCard(name, id, imgUrl, type, secType) {
   pokemonContainer.innerHTML += pokemonCardTemplate(name, id, imgUrl, type, secType);
@@ -63,20 +63,20 @@ async function openModal(name, id, imgUrl, type, secType) {
   } catch (err) {
     console.error("Fehler beim Laden des Pokémon:", err);
   }
-}
+  }
 
 function showNext() {
   const nextId = currentId + 1;
   const nextCard = document.querySelector(`article[data-id="${nextId}"]`);
   if (!nextCard) return; 
   openModalFromCard(nextCard);
-}
+  }
 
 function showPrev() {
   let prevId = currentId - 1; 
   let prevCard = document.querySelector(`article[data-id="${prevId}"]`);
   openModalFromCard(prevCard);
-}
+  }
 
 document.getElementById("modal-next").addEventListener("click", showNext);
 document.getElementById("modal-prev").addEventListener("click", showPrev);
@@ -85,23 +85,23 @@ function closeModal() {
   pokemonModal.classList.remove("is-open");
   pokemonModal.hidden = true; 
   modalHero.classList.remove(modalHero.classList[1]);
-}
+  }
 
 function loadMore() {
   if (isLoading) return;
-
   isLoading = true;
+
   statusMessage.hidden = false;
   statusMessage.textContent = isLoadingTemplate();
   checkGenerations();
-}
+  }
 
 
 pokemonModal.addEventListener("click", (event) => {
   if (event.target === pokemonModal || event.target.id === "modal-close") {
     closeModal();
   }
-});
+  });
 
 document.addEventListener("DOMContentLoaded", fetchData);
 
@@ -113,7 +113,7 @@ function applySearchFilter(query) {
 
   if (!checkSearchLength(cards, search)) return;
   heandleSearchPokemon(cards, search);
-}
+  }
 
 function handleSearchInput(event) {
   applySearchFilter(event.target.value);
@@ -121,8 +121,8 @@ function handleSearchInput(event) {
   currentSearch = event.target.value;
   isSearching = currentSearch.length >= 3;
 
-}
+  }
 
 if (typeof searchInput !== 'undefined' && searchInput) {
   searchInput.addEventListener('input', handleSearchInput);
-}
+  }
