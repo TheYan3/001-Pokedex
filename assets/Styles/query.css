@@ -31,10 +31,6 @@
 }
 
 @media (max-width: 600px) {
-   #main-wrapper {
-      padding: 0px 12px 72px;
-   }
-
    #pokemon-container {
       all: unset;
    }
@@ -136,10 +132,6 @@
       border: none;
       border-radius: 0;
       box-shadow: none;
-   }
-
-   .page-header .search-group {
-      width: 100%;
    }
 
    .page-header .search-group input {
