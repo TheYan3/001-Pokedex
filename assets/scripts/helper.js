@@ -72,6 +72,7 @@ function showinfo(info) {
 function checkSearchLength(cards, search) {
   if (search.length === 0) {
     cards.forEach(card => card.classList.remove("is-hidden"));
+    loadMoreBtn.classList.remove("is-hidden");
     return false;
   }
 
