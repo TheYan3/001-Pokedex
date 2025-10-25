@@ -32,7 +32,7 @@
 
 @media (max-width: 600px) {
    #main-wrapper {
-      padding: 80px 12px 72px;
+      padding: 0px 12px 72px;
    }
 
    #pokemon-container {
