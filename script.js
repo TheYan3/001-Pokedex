@@ -1,6 +1,6 @@
 async function fetchData() {
   try {
-    const data = await (await fetch(`${BASE_URL}?limit=${pageSize}&offset=${offset}`)).json();
+    const data = await (await fetch(`${BASE_URL}?limit=${pageSize}`)).json();
     const newResults = data.results.slice(renderedCount);
     for (const result of newResults) {
       const { id, name, imgUrl, type, secType } = await getPokemonData(result);
@@ -8,7 +8,7 @@ async function fetchData() {
     }
     renderedCount = data.results.length;
   } catch (error) {
-    heandleError(error);
+    handleError(error);
   } finally {
     finishLoading();
     refreshCardsVisibility();
@@ -50,7 +50,7 @@ async function openModal(name, id, imgUrl, type, secType) {
       showAbout(pokemon)
       checkNavButtons();
   } catch (error) {
-    heandleError(error);
+    handleError(error);
   }
   }
 
@@ -106,7 +106,7 @@ function applySearchFilter(query) {
   pokemonContainer.querySelectorAll(".pokemon-card:not([data-id])").forEach(el => el.remove());
 
   if (!checkSearchLength(cards, search)) return;
-  heandleSearchPokemon(cards, search);
+  handleSearchPokemon(cards, search);
   }
 
 function handleSearchInput(event) {

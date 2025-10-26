@@ -32,7 +32,7 @@ function pokemonCardTemplate({ name, id, imgUrl, type, secType }) {
 
 function searchInfoTemplate(searchInfo) {
     return `
-      <article class="pokemon-card"      
+      <article class="pokemon-card">      
         <div class="type-bg">
         </div>
 
@@ -48,13 +48,13 @@ function searchInfoTemplate(searchInfo) {
   }
   
 function errorTemplate() {
-    return `<p>⚠️ Error loading Pokémon!</p>`;
+    return `<p>Error loading Pokémon!</p>`;
   }
 
 function isLoadingTemplate() {
     return `
       <img src="./assets/img/loading.gif" alt="Loading"> 
-      <p>Load Pokémon...<p>`;
+      <p>Load Pokémon...</p>`;
   }
   
 function loadPanelBtn() {

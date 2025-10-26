@@ -1,7 +1,6 @@
 function finishLoading() {
   isLoading = false;
   statusMessage.hidden = true;
-  pokemonContainer.querySelectorAll('.pokemon-card').forEach(card => card.classList.remove('is-hidden'));
   }
 
 function refreshCardsVisibility() {
@@ -32,11 +31,6 @@ function checkGenerations() {
     return fetchData();
   }
 
-function getIdFromSpeciesUrl(url) {
-    const match = url.match(/\/pokemon-species\/(\d+)\//);
-    return match ? Number(match[1]) : null;
-  }
-
 function getTypeFromClass(card) {
     const clasRef = [...card.classList].find(c => c.startsWith('type-'));
     return clasRef ? clasRef.replace('type-', '') : '';
@@ -51,7 +45,6 @@ function setModalBasics({ name, id, imgUrl, type, secType }) {
   modalImg.src = imgUrl;
   modalTypes.textContent = type.charAt(0).toUpperCase() + type.slice(1);
   modalSecTypes.textContent = secType.charAt(0).toUpperCase() + secType.slice(1);
-  modalCard.classList.add(`bg-${type}`);
   }
 
 function openModalFromCard(card) {
@@ -124,7 +117,7 @@ function checkSearchLength(cards, search) {
   return true;
   }
 
-function heandleSearchPokemon(cards, search) {
+function handleSearchPokemon(cards, search) {
   cards.forEach(card => {
     const name = (card.dataset.name || "").toLowerCase();
     if (name.includes(search)) {
@@ -142,7 +135,7 @@ function heandleSearchPokemon(cards, search) {
   }
   }
 
-function heandleError(error) {
+function handleError(error) {
   console.error("Fehler beim Laden:", error);
   pokemonContainer.innerHTML = errorTemplate();
   }

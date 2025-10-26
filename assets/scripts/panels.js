@@ -1,5 +1,4 @@
 function showAbout(pokemon) { 
-  panelRef.innerHTML = "";
     panelRef.innerHTML = `
     <section
         class="modal-panel is-active"
@@ -20,7 +19,6 @@ function showAbout(pokemon) {
   }
   
   function showStats(pokemon) {
-    panelRef.innerHTML = "";
     if (!pokemon || !pokemon.stats) return; 
     panelRef.innerHTML = pokemon.stats.map(stat => `
       <section
@@ -43,10 +41,7 @@ function showAbout(pokemon) {
     setActiveTab('stats');
   }
   
-  
   function showShiny(pokemon) {
-    panelRef.innerHTML = "";
-
     panelRef.innerHTML = `
     <section
      class="modal-panel  is-active"
@@ -55,7 +50,7 @@ function showAbout(pokemon) {
      data-tab-panel="shiny">
      <div class="shiny-viewer" id="modal-shiny">
       <img src="${artworkBase}${pokemon.id}.png" alt="${pokemon.name} normal" class="shiny-image">
-      <img src="${artworkBase}shiny/${pokemon.id}.png" alt="${pokemon.name} shiny" class="shiny-image">
+      <img src="${artworkBase}/shiny/${pokemon.id}.png" alt="${pokemon.name} shiny" class="shiny-image">
      </div>
     </section>
     `;

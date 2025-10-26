@@ -3,7 +3,6 @@ const artworkBase = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sp
 
 const generationLimits = [151, 251, 386, 493, 649, 721, 809, 905, 1025];
 let pageSize = 24;
-let offset = 0;
 let step = 24;
 let renderedCount = 0;
 
@@ -30,15 +29,8 @@ const modalHero = document.getElementById("modal-hero");
 const searchInput = document.getElementById("search-input");
 const loadMoreBtn = document.getElementById("load-more");
 const modalSecTypes = document.getElementById("modal-secTypes");
-const aboutRef = document.getElementById("modal-about");
-const statsRef = document.getElementById("modal-stats");
-const shinyRef = document.getElementById("modal-shiny");
-const evolutionRef = document.getElementById("modal-evolution");
 const modalNav = document.getElementById("modal-nav-btns");
 const panelRef  = document.getElementById("modal-panel");
-const inputRef = document.getElementById("search-input");
 const modalCard = document.getElementById("modal-card");
 
-let timer = null;
-let warnedShort = false; 
 
