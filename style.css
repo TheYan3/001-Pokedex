@@ -533,11 +533,18 @@ body.modal-open {
    border: 1px solid rgba(255, 255, 255, 0.25);
    border-radius: 14px;
    margin: 8px;
-   height: auto;
+   height: 200px;
    max-height: calc(100vh - 340px);
    overflow: auto;
    backdrop-filter: blur(10px) saturate(140%);
    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+.modal-panels.is-shiny {
+   background: transparent;
+   border: 0;
+   box-shadow: none;
+   backdrop-filter: none;
 }
 
 .modal-panel {
@@ -581,7 +588,7 @@ body.modal-open {
 
 .stat-row {
    display: grid;
-   grid-template-columns: 120px auto 40px;
+   grid-template-columns: 90px auto 40px;
    align-items: center;
    gap: 12px;
 }

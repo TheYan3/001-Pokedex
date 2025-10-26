@@ -87,6 +87,12 @@ function setActiveTab(tabName) {
       .forEach(btn => btn.classList.toggle('is-active', btn.dataset.tab === tabName));
   }
 
+function switchPanel(target) {
+    const isShiny = target === 'shiny';
+    panelRef.classList.toggle('is-shiny', isShiny);
+    panelRef.classList.remove('is-hidden');
+  }
+
 function showinfo(info) {
   if (info === noResultFound) {
    pokemonContainer.innerHTML += searchInfoTemplate(info);

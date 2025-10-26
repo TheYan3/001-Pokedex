@@ -31,6 +31,7 @@ const loadMoreBtn = document.getElementById("load-more");
 const modalSecTypes = document.getElementById("modal-secTypes");
 const modalNav = document.getElementById("modal-nav-btns");
 const panelRef  = document.getElementById("modal-panel");
+const shinyPanelRef  = document.getElementById("modal-panel-shiny");
 const modalCard = document.getElementById("modal-card");
 
 
