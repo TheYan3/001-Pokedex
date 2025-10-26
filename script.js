@@ -2,81 +2,72 @@ async function fetchData() {
   try {
     const data = await (await fetch(`${BASE_URL}?limit=${pageSize}&offset=${offset}`)).json();
     const newResults = data.results.slice(renderedCount);
-
     for (const result of newResults) {
-      const pokemon = await (await fetch(result.url)).json();
-      const { id, name, types } = pokemon;
-      const [type, secType] = [types[0].type.name, types[1]?.type.name || ""];
-      const imgUrl = `${artworkBase}${id}.png`;
-
+      const { id, name, imgUrl, type, secType } = await getPokemonData(result);
       renderPokemonCard({ id, name, imgUrl, type, secType });
     }
     renderedCount = data.results.length;
-  } catch (e) {
-    console.error("Fehler beim Laden:", e);
-    pokemonContainer.innerHTML = errorTemplate();
+  } catch (error) {
+    heandleError(error);
   } finally {
-    isLoading = false;
-    statusMessage.hidden = true;
+    finishLoading();
+    refreshCardsVisibility();
   }
   }
 
-function renderPokemonCard(name, id, imgUrl, type, secType) {
-  pokemonContainer.innerHTML += pokemonCardTemplate(name, id, imgUrl, type, secType);
+async function getPokemonData(result) {
+    const pokemon = await (await fetch(result.url)).json();
+    const { id, name, types } = pokemon;
+    const [type, secType] = [types[0].type.name, types[1]?.type.name || ""];
+    const imgUrl = `${artworkBase}${id}.png`;
+    return { id, name, imgUrl, type, secType };
+  }
+
+function renderPokemonCard({ name, id, imgUrl, type, secType }) {
+    pokemonContainer.innerHTML += pokemonCardTemplate({ name, id, imgUrl, type, secType });
   
-  if (isSearching
-  ) {
+  if (isSearching) {
+    applySearchFilter(currentSearch);
+  }
+  if (isLoading) {
     const last = pokemonContainer.lastElementChild;
     if (last && last.classList.contains('pokemon-card')) {
-      last.classList.add('is-hidden');  
-      applySearchFilter(currentSearch);  
+    last.classList.add('is-hidden');
     }
-  } else {
-    pokemonContainer.classList.remove('is-hidden');   
   }
   }
 
-async function openModal(name, id, imgUrl, type, secType) {
-    currentId = Number(id);
-    pokemonModal.classList.add("is-open");
-    pokemonModal.hidden = false;
-    modalName.textContent = name.charAt(0).toUpperCase() + name.slice(1);
-    modalId.textContent = `#${String(id).padStart(3, "0")}`;
-    modalImg.src = imgUrl;
-    modalTypes.textContent = type.charAt(0).toUpperCase() + type.slice(1);
-    modalSecTypes.textContent = secType.charAt(0).toUpperCase() + secType.slice(1);
-    modalCard.classList.add(`bg-${type}`);
-
-    [...modalCard.classList]
-    .filter(c => c.startsWith("bg-"))
-    .forEach(c => modalCard.classList.remove(c));
-    modalCard.classList.add(`bg-${type}`);
+async function openModal(name, id, imgUrl, type, secType) { 
+    setModalBasics({ name, id, imgUrl, type, secType });
+    setModalBg(type)
 
     try {
       const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
       const pokemon = await res.json();
   
-      loadPanelBtn();
+      modalNav.innerHTML = loadPanelBtn();
       currentPokemonData = pokemon;
       showAbout(pokemon)
-
       checkNavButtons();
-  } catch (err) {
-    console.error("Fehler beim Laden des Pokémon:", err);
+  } catch (error) {
+    heandleError(error);
   }
   }
 
 function showNext() {
-  const nextId = currentId + 1;
-  const nextCard = document.querySelector(`article[data-id="${nextId}"]`);
-  if (!nextCard) return; 
-  openModalFromCard(nextCard);
+    const cards = getNavCards();
+    const i = cards.findIndex(c => Number(c.dataset.id) === currentId);
+    const next = i >= 0 ? cards[i + 1] : null;
+    if (!next) return;
+    openModalFromCard(next);
   }
 
 function showPrev() {
-  let prevId = currentId - 1; 
-  let prevCard = document.querySelector(`article[data-id="${prevId}"]`);
-  openModalFromCard(prevCard);
+      const cards = getNavCards();
+      const i = cards.findIndex(c => Number(c.dataset.id) === currentId);
+      const prev = i > 0 ? cards[i - 1] : null;
+      if (!prev) return;
+      openModalFromCard(prev);
   }
 
 document.getElementById("modal-next").addEventListener("click", showNext);
@@ -93,10 +84,10 @@ function loadMore() {
   isLoading = true;
 
   statusMessage.hidden = false;
-  statusMessage.textContent = isLoadingTemplate();
+  statusMessage.innerHTML = isLoadingTemplate();
+  pokemonContainer.querySelectorAll('.pokemon-card').forEach(card => card.classList.add('is-hidden'));
   checkGenerations();
   }
-
 
 pokemonModal.addEventListener("click", (event) => {
   if (event.target === pokemonModal || event.target.id === "modal-close") {
@@ -107,6 +98,8 @@ pokemonModal.addEventListener("click", (event) => {
 document.addEventListener("DOMContentLoaded", fetchData);
 
 function applySearchFilter(query) {
+  if (isLoading) return;
+
   const search = (query || "").trim().toLowerCase();
   const cards = pokemonContainer.querySelectorAll(".pokemon-card");
   

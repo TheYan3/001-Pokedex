@@ -1,3 +1,18 @@
+function finishLoading() {
+  isLoading = false;
+  statusMessage.hidden = true;
+  pokemonContainer.querySelectorAll('.pokemon-card').forEach(card => card.classList.remove('is-hidden'));
+  }
+
+function refreshCardsVisibility() {
+  const cards = pokemonContainer.querySelectorAll('.pokemon-card');
+  if (isSearching) {
+    applySearchFilter(currentSearch);} 
+    else {
+    cards.forEach(card => card.classList.remove('is-hidden'));
+    }
+  }
+
 function checkGenerations() {
   
     const nextLimit = generationLimits.find(limit => limit > pageSize);
@@ -27,6 +42,18 @@ function getTypeFromClass(card) {
     return clasRef ? clasRef.replace('type-', '') : '';
   }
 
+function setModalBasics({ name, id, imgUrl, type, secType }) {
+  currentId = Number(id);
+  pokemonModal.classList.add("is-open");
+  pokemonModal.hidden = false;
+  modalName.textContent = name.charAt(0).toUpperCase() + name.slice(1);
+  modalId.textContent = `#${String(id).padStart(3, "0")}`;
+  modalImg.src = imgUrl;
+  modalTypes.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+  modalSecTypes.textContent = secType.charAt(0).toUpperCase() + secType.slice(1);
+  modalCard.classList.add(`bg-${type}`);
+  }
+
 function openModalFromCard(card) {
     if (!card) return;
     
@@ -39,15 +66,27 @@ function openModalFromCard(card) {
     openModal(name, id, imgUrl, type, secType);
   }
 
+function setModalBg(type) {
+  [...modalCard.classList]
+  .filter(c => c.startsWith("bg-"))
+  .forEach(c => modalCard.classList.remove(c));
+  modalCard.classList.add(`bg-${type}`);
+  }  
+
+function getNavCards() {
+    const sel = isSearching ? '.pokemon-card:not(.is-hidden)' : '.pokemon-card';
+    return Array.from(document.querySelectorAll(sel));
+  }
+
 function checkNavButtons() {
-    let nextCard = document.querySelector(`article[data-id="${currentId + 1}"]`);
-    let prevCard = document.querySelector(`article[data-id="${currentId - 1}"]`);
-    
-    let nextBtn = document.getElementById("modal-next");
-    let prevBtn = document.getElementById("modal-prev");
-    
-    nextBtn.disabled = !nextCard;
-    prevBtn.disabled = !prevCard;
+const cards = getNavCards();
+const i = cards.findIndex(c => Number(c.dataset.id) === currentId);
+const nextCard = i >= 0 ? cards[i + 1] : null;
+const prevCard = i > 0 ? cards[i - 1] : null;
+let nextBtn = document.getElementById('modal-next');
+let prevBtn = document.getElementById('modal-prev');
+nextBtn.disabled = !nextCard;
+prevBtn.disabled = !prevCard;
   }
 
 function setActiveTab(tabName) {
@@ -66,7 +105,7 @@ function showinfo(info) {
   pokemonContainer.innerHTML += searchInfoTemplate(info);
   loadMoreBtn.classList.add("is-hidden");	
   return;
-}
+  }
   }
 
 function checkSearchLength(cards, search) {
@@ -96,7 +135,14 @@ function heandleSearchPokemon(cards, search) {
     }
   });
 
+  loadMoreBtn.classList.remove('is-hidden');
+  
   if (search.length >= 3 && matchCount === 0) {
     showinfo(noResultFound);
   }
+  }
+
+function heandleError(error) {
+  console.error("Fehler beim Laden:", error);
+  pokemonContainer.innerHTML = errorTemplate();
   }

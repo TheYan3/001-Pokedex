@@ -6,7 +6,8 @@ function pokemonCardTemplate({ name, id, imgUrl, type, secType }) {
                data-id="${id}" 
                data-name="${name}" 
                data-type="${type}" 
-               data-secType="${secType}">
+               data-secType="${secType}"
+               >
                
         <div class="type-bg">
           <img 
@@ -51,34 +52,36 @@ function errorTemplate() {
   }
 
 function isLoadingTemplate() {
-    return `Load Pokémon...`;
+    return `
+      <img src="./assets/img/loading.gif" alt="Loading"> 
+      <p>Load Pokémon...<p>`;
   }
   
-  function loadPanelBtn() {
-    modalNav.innerHTML = `
-    <button
-                  onclick="showAbout(currentPokemonData)"
-                  class="modal-tab is-active"
-                  data-tab="about"
-                  role="tab"
-                  aria-controls="modal-panel-about">
-                  About
-               </button>
-               <button
-                  onclick="showStats(currentPokemonData)"
-                  class="modal-tab"
-                  data-tab="stats"
-                  role="tab"
-                  aria-controls="modal-panel-stats">
-                  Base Stats
-               </button>
-               <button
-                  onclick="showShiny(currentPokemonData)"
-                  class="modal-tab"
-                  data-tab="shiny"
-                  role="tab"
-                  aria-controls="modal-panel-shiny">
-                  Shiny
-               </button>
+function loadPanelBtn() {
+    return `
+      <button
+           onclick="showAbout(currentPokemonData)"
+           class="modal-tab is-active"
+           data-tab="about"
+           role="tab"
+           aria-controls="modal-panel-about">
+           About
+      </button>
+      <button
+          onclick="showStats(currentPokemonData)"
+          class="modal-tab"
+          data-tab="stats"
+          role="tab"
+          aria-controls="modal-panel-stats">
+          Base Stats
+      </button>
+      <button
+          onclick="showShiny(currentPokemonData)"
+          class="modal-tab"
+          data-tab="shiny"
+          role="tab"
+          aria-controls="modal-panel-shiny">
+          Shiny
+      </button>
     `;
   }
