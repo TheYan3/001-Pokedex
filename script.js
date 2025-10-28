@@ -13,18 +13,18 @@ async function fetchData() {
     finishLoading();
     refreshCardsVisibility();
   }
-  }
+}
 
 async function getPokemonData(result) {
-    const pokemon = await (await fetch(result.url)).json();
-    const { id, name, types } = pokemon;
-    const [type, secType] = [types[0].type.name, types[1]?.type.name || ""];
-    const imgUrl = `${artworkBase}${id}.png`;
-    return { id, name, imgUrl, type, secType };
-  }
+  const pokemon = await (await fetch(result.url)).json();
+  const { id, name, types } = pokemon;
+  const [type, secType] = [types[0].type.name, types[1]?.type.name || ""];
+  const imgUrl = `${artworkBase}${id}.png`;
+  return { id, name, imgUrl, type, secType };
+}
 
 function renderPokemonCard({ name, id, imgUrl, type, secType }) {
-    pokemonContainer.innerHTML += pokemonCardTemplate({ name, id, imgUrl, type, secType });
+  pokemonContainer.innerHTML += pokemonCardTemplate({ name, id, imgUrl, type, secType });
   
   if (isSearching) {
     applySearchFilter(currentSearch);
@@ -35,12 +35,12 @@ function renderPokemonCard({ name, id, imgUrl, type, secType }) {
     last.classList.add('is-hidden');
     }
   }
-  }
+}
 
 async function openModal(name, id, imgUrl, type, secType) { 
     setModalBasics({ name, id, imgUrl, type, secType });
     setModalBg(type)
-
+    document.body.classList.add('modal-open');
     try {
       const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
       const pokemon = await res.json();
@@ -52,15 +52,15 @@ async function openModal(name, id, imgUrl, type, secType) {
   } catch (error) {
     handleError(error);
   }
-  }
+}
 
 function showNext() {
-    const cards = getNavCards();
-    const i = cards.findIndex(c => Number(c.dataset.id) === currentId);
-    const next = i >= 0 ? cards[i + 1] : null;
-    if (!next) return;
-    openModalFromCard(next);
-  }
+  const cards = getNavCards();
+  const i = cards.findIndex(c => Number(c.dataset.id) === currentId);
+  const next = i >= 0 ? cards[i + 1] : null;
+  if (!next) return;
+  openModalFromCard(next);
+}
 
 function showPrev() {
       const cards = getNavCards();
@@ -68,16 +68,14 @@ function showPrev() {
       const prev = i > 0 ? cards[i - 1] : null;
       if (!prev) return;
       openModalFromCard(prev);
-  }
-
-document.getElementById("modal-next").addEventListener("click", showNext);
-document.getElementById("modal-prev").addEventListener("click", showPrev);
+}
 
 function closeModal() {
   pokemonModal.classList.remove("is-open");
   pokemonModal.hidden = true; 
   modalHero.classList.remove(modalHero.classList[1]);
-  }
+  document.body.classList.remove('modal-open');
+}
 
 function loadMore() {
   if (isLoading) return;
@@ -87,15 +85,7 @@ function loadMore() {
   statusMessage.innerHTML = isLoadingTemplate();
   pokemonContainer.querySelectorAll('.pokemon-card').forEach(card => card.classList.add('is-hidden'));
   checkGenerations();
-  }
-
-pokemonModal.addEventListener("click", (event) => {
-  if (event.target === pokemonModal || event.target.id === "modal-close") {
-    closeModal();
-  }
-  });
-
-document.addEventListener("DOMContentLoaded", fetchData);
+}
 
 function applySearchFilter(query) {
   if (isLoading) return;
@@ -107,7 +97,14 @@ function applySearchFilter(query) {
 
   if (!checkSearchLength(cards, search)) return;
   handleSearchPokemon(cards, search);
-  }
+}
+
+function resetSearch() {
+  searchInput.value = "";
+  applySearchFilter("");
+  currentSearch = "";
+  isSearching = false;
+}
 
 function handleSearchInput(event) {
   applySearchFilter(event.target.value);
@@ -115,8 +112,18 @@ function handleSearchInput(event) {
   currentSearch = event.target.value;
   isSearching = currentSearch.length >= 3;
 
-  }
+}
+
+document.addEventListener("DOMContentLoaded", fetchData);
+document.getElementById("modal-next").addEventListener("click", showNext);
+document.getElementById("modal-prev").addEventListener("click", showPrev);
 
 if (typeof searchInput !== 'undefined' && searchInput) {
   searchInput.addEventListener('input', handleSearchInput);
+}
+
+pokemonModal.addEventListener("click", (event) => {
+  if (event.target === pokemonModal || event.target.id === "modal-close") {
+    closeModal();
   }
+});

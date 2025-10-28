@@ -1,7 +1,7 @@
 function finishLoading() {
   isLoading = false;
   statusMessage.hidden = true;
-  }
+}
 
 function refreshCardsVisibility() {
   const cards = pokemonContainer.querySelectorAll('.pokemon-card');
@@ -10,7 +10,7 @@ function refreshCardsVisibility() {
     else {
     cards.forEach(card => card.classList.remove('is-hidden'));
     }
-  }
+}
 
 function checkGenerations() {
   
@@ -29,12 +29,12 @@ function checkGenerations() {
     }
   
     return fetchData();
-  }
+}
 
 function getTypeFromClass(card) {
-    const clasRef = [...card.classList].find(c => c.startsWith('type-'));
-    return clasRef ? clasRef.replace('type-', '') : '';
-  }
+  const clasRef = [...card.classList].find(c => c.startsWith('type-'));
+  return clasRef ? clasRef.replace('type-', '') : '';
+}
 
 function setModalBasics({ name, id, imgUrl, type, secType }) {
   currentId = Number(id);
@@ -45,7 +45,7 @@ function setModalBasics({ name, id, imgUrl, type, secType }) {
   modalImg.src = imgUrl;
   modalTypes.textContent = type.charAt(0).toUpperCase() + type.slice(1);
   modalSecTypes.textContent = secType.charAt(0).toUpperCase() + secType.slice(1);
-  }
+}
 
 function openModalFromCard(card) {
     if (!card) return;
@@ -57,55 +57,55 @@ function openModalFromCard(card) {
     let secType = card.dataset.sectype || "";
     
     openModal(name, id, imgUrl, type, secType);
-  }
+}
 
 function setModalBg(type) {
   [...modalCard.classList]
   .filter(c => c.startsWith("bg-"))
   .forEach(c => modalCard.classList.remove(c));
   modalCard.classList.add(`bg-${type}`);
-  }  
+}  
 
 function getNavCards() {
     const sel = isSearching ? '.pokemon-card:not(.is-hidden)' : '.pokemon-card';
     return Array.from(document.querySelectorAll(sel));
-  }
+}
 
 function checkNavButtons() {
-const cards = getNavCards();
-const i = cards.findIndex(c => Number(c.dataset.id) === currentId);
-const nextCard = i >= 0 ? cards[i + 1] : null;
-const prevCard = i > 0 ? cards[i - 1] : null;
-let nextBtn = document.getElementById('modal-next');
-let prevBtn = document.getElementById('modal-prev');
-nextBtn.disabled = !nextCard;
-prevBtn.disabled = !prevCard;
-  }
+  const cards = getNavCards();
+  const i = cards.findIndex(c => Number(c.dataset.id) === currentId);
+  const nextCard = i >= 0 ? cards[i + 1] : null;
+  const prevCard = i > 0 ? cards[i - 1] : null;
+  let nextBtn = document.getElementById('modal-next');
+  let prevBtn = document.getElementById('modal-prev');
+  nextBtn.disabled = !nextCard;
+  prevBtn.disabled = !prevCard;
+}
 
 function setActiveTab(tabName) {
     document.querySelectorAll('.modal-tab')
-      .forEach(btn => btn.classList.toggle('is-active', btn.dataset.tab === tabName));
-  }
+    .forEach(btn => btn.classList.toggle('is-active', btn.dataset.tab === tabName));
+}
 
 function switchPanel(target) {
-    const isShiny = target === 'shiny';
-    panelRef.classList.toggle('is-shiny', isShiny);
-    panelRef.classList.remove('is-hidden');
-  }
+  const isShiny = target === 'shiny';
+  panelRef.classList.toggle('is-shiny', isShiny);
+  panelRef.classList.remove('is-hidden');
+}
 
 function showinfo(info) {
   if (info === noResultFound) {
    pokemonContainer.innerHTML += searchInfoTemplate(info);
    loadMoreBtn.classList.remove("is-hidden");
-    return;
+   return;
   }
   
   if (info === lessSearch) {
-  pokemonContainer.innerHTML += searchInfoTemplate(info);
-  loadMoreBtn.classList.add("is-hidden");	
-  return;
+    pokemonContainer.innerHTML += searchInfoTemplate(info);
+    loadMoreBtn.classList.add("is-hidden");	
+    return;
   }
-  }
+}
 
 function checkSearchLength(cards, search) {
   if (search.length === 0) {
@@ -121,7 +121,7 @@ function checkSearchLength(cards, search) {
   }
   matchCount = 0;
   return true;
-  }
+}
 
 function handleSearchPokemon(cards, search) {
   cards.forEach(card => {
@@ -134,14 +134,12 @@ function handleSearchPokemon(cards, search) {
     }
   });
 
-  loadMoreBtn.classList.remove('is-hidden');
-  
   if (search.length >= 3 && matchCount === 0) {
     showinfo(noResultFound);
   }
-  }
+}
 
 function handleError(error) {
   console.error("Fehler beim Laden:", error);
   pokemonContainer.innerHTML = errorTemplate();
-  }
+}

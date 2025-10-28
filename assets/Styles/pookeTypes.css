@@ -120,7 +120,7 @@
    background-repeat: no-repeat;
    color: var(--fire-text);
 }
-.type-flying {
+.bg-flying {
    background-image: url("../img/typesBg/bg-flying.png");
    background-size: cover;
    background-position: center;

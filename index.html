@@ -8,10 +8,11 @@
          rel="icon"
          type="image/PokeBall-icon"
          href="./assets/img/PokéBallIcon.png" />
-      <link rel="stylesheet" href="style.css" />
       <link rel="stylesheet" href="./assets/Styles/root.css" />
-      <link rel="stylesheet" href="./assets/Styles/query.css" />
+      <link rel="stylesheet" href="./assets/Styles/components.css" />
       <link rel="stylesheet" href="./assets/Styles/pookeTypes.css" />
+      <link rel="stylesheet" href="./assets/Styles/query.css" />
+      <link rel="stylesheet" href="style.css" />
       <script src="./assets/scripts/variabeln.js" defer></script>
       <script src="./assets/scripts/helper.js" defer></script>
       <script src="./assets/scripts/templates.js" defer></script>
@@ -21,7 +22,11 @@
    <body>
       <div id="main-wrapper">
          <header class="page-header">
-            <h1>
+            <h1
+               onclick="resetSearch()"
+               class="page-title"
+               role="button"
+               tabindex="0">
                <img
                   src="./assets/img/PokéBallIcon.png"
                   alt="PokeBall-icon" />Pokédex
