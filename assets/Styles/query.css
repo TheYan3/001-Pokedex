@@ -106,7 +106,7 @@
    }
 
    .page-header h1 {
-      font-size: 2rem;
+      padding: 6px 20px 6px 0;
    }
 
    .page-header .search-group input {
